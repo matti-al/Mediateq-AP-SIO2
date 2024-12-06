@@ -4,16 +4,13 @@ namespace Mediateq_AP_SIO2.metier
 {
     public class Categorie
     {
-        private int id;
-        private string libelle;
-
         public Categorie(int id, string libelle)
         {
-            this.id = id;
-            this.libelle = libelle;
+            this.Id = id;
+            this.Libelle = libelle;
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Libelle { get => libelle; set => libelle = value; }
+        public int Id { get; set; }
+        public string Libelle { get; set; }
     }
 }

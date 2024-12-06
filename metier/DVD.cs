@@ -21,8 +21,8 @@ namespace Mediateq_AP_SIO2.metier
             duree = pDuree;
         }
 
-        public string Synopsis { get => synopsis; set => synopsis = value; }
-        public string Realisateur { get => realisateur; set => realisateur = value; }
-        public int Duree { get => duree; set => duree = value; }
+        public string Synopsis { get; set; }
+        public string Realisateur { get; set; }
+        public int Duree { get; set; }
     }
 }

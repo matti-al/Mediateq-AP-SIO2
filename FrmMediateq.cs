@@ -104,7 +104,7 @@ namespace Mediateq_AP_SIO2
             // Parcours de la collection des titres et alimentation du datagridview
             foreach (Revue revue in lesRevues)
             {
-                if (revue.IdDescripteur == domaineSelectionne.Id)
+                if (revue.IdDescripteur != null && revue.IdDescripteur.Id == domaineSelectionne.Id)
                 {
                     dgvTitres.Rows.Add(revue.Id, revue.Titre, revue.Empruntable, revue.DateFinAbonnement, revue.DelaiMiseADispo);
                 }

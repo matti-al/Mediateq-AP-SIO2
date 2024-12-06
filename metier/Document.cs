@@ -4,23 +4,18 @@ namespace Mediateq_AP_SIO2.metier
 {
     class Document
     {
-        private int idDoc;
-        private string titre;
-        private string image;
-        private Categorie laCategorie;
-
         public Document(int unId, string unTitre, string uneImage)
         {
-            idDoc = unId;
-            titre = unTitre;
-            image = uneImage;
+            IdDoc = unId;
+            Titre = unTitre;
+            Image = uneImage;
         }
 
 
-        public int IdDoc { get => idDoc; set => idDoc = value; }
-        public string Titre { get => titre; set => titre = value; }
-        public string Image { get => image; set => image = value; }
-        public Categorie LaCategorie { get => laCategorie; set => laCategorie = value; }
+        public int IdDoc { get; set; }
+        public string Titre { get; set; }
+        public string Image { get; set; }
+        public Categorie LaCategorie { get; set; }
     }
 
 

@@ -21,12 +21,31 @@ namespace Mediateq_AP_SIO2
 
             MySqlDataReader reader = DAOFactory.execSQLRead(req);
 
-            while (reader.Read())
-            {
-                Revue titre = new Revue(int.Parse(reader[0].ToString()), reader[1].ToString(), char.Parse(reader[2].ToString()), reader[3].ToString(),DateTime.Parse(reader[5].ToString()), int.Parse(reader[4].ToString()), int.Parse(reader[6].ToString()));
-                lesRevues.Add(titre);
-            }
-            DAOFactory.deconnecter();
+                while (reader.Read())
+                {
+                    // Récupérer l'ID du descripteur depuis la base de données
+                    int idDescripteur = int.Parse(reader[6].ToString());
+                    Descripteur descripteur = new Descripteur(idDescripteur, "Libelle du descripteur à définir"); // Créez ou récupérez un Descripteur valide
+
+                    // Récupérer ou créer une catégorie (si applicable)
+                    Categorie categorie = new Categorie(1, "Libelle de catégorie"); // Adapter selon votre base de données
+
+                    // Créer l'objet Revue avec tous les paramètres nécessaires
+                    Revue titre = new Revue(
+                        int.Parse(reader[0].ToString()),       // Id
+                        reader[1].ToString(),                  // Titre
+                        char.Parse(reader[2].ToString()),      // Empruntable
+                        reader[3].ToString(),                  // Periodicite
+                        DateTime.Parse(reader[5].ToString()),  // DateFinAbonnement
+                        int.Parse(reader[4].ToString()),       // DelaiMiseADispo
+                        descripteur,                           // Descripteur
+                        categorie                              // Categorie
+                    );
+
+                    lesRevues.Add(titre);
+                }
+
+                DAOFactory.deconnecter();
 
         }
             catch (Exception exc)

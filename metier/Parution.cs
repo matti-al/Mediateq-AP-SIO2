@@ -21,9 +21,9 @@ namespace Mediateq_AP_SIO2.metier
             this.laRevue = uneRevue;
         }
 
-        public int Numero { get => numero; set => numero = value; }
-        public DateTime DateParution { get => dateParution; set => dateParution = value; }
-        public string Photo { get => photo; set => photo = value; }
-        public Revue LaRevue { get => laRevue; set => laRevue = value; }
+        public int Numero { get; set; }
+        public DateTime DateParution { get; set; }
+        public string Photo { get; set; }
+        public Revue LaRevue { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace Mediateq_AP_SIO2.metier
         }
 
 
-        public int NiveauExc { get => niveauExc; set => niveauExc = value; }
-        public string LibelleExc { get => libelleExc; set => libelleExc = value; }
+        public int NiveauExc { get; set; }
+        public string LibelleExc { get; set; }
 
     }
 }
