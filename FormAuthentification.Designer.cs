@@ -60,6 +60,7 @@
             // textBoxLogin
             // 
             this.textBoxLogin.Location = new System.Drawing.Point(121, 49);
+            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(100, 22);
             this.textBoxLogin.TabIndex = 2;
@@ -67,6 +68,7 @@
             // textBoxMotDePasse
             // 
             this.textBoxMotDePasse.Location = new System.Drawing.Point(153, 116);
+            this.textBoxMotDePasse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxMotDePasse.Name = "textBoxMotDePasse";
             this.textBoxMotDePasse.Size = new System.Drawing.Size(100, 22);
             this.textBoxMotDePasse.TabIndex = 3;
@@ -74,6 +76,7 @@
             // BtnConnexion
             // 
             this.BtnConnexion.Location = new System.Drawing.Point(313, 233);
+            this.BtnConnexion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnConnexion.Name = "BtnConnexion";
             this.BtnConnexion.Size = new System.Drawing.Size(95, 23);
             this.BtnConnexion.TabIndex = 4;
@@ -84,11 +87,11 @@
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(317, 278);
+            this.lblMessage.Location = new System.Drawing.Point(337, 297);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(73, 16);
+            this.lblMessage.Size = new System.Drawing.Size(67, 16);
             this.lblMessage.TabIndex = 5;
-            this.lblMessage.Text = "Message : ";
+            this.lblMessage.Text = "Message ";
             // 
             // FormAuthentification
             // 
@@ -101,6 +104,7 @@
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.labelMdp);
             this.Controls.Add(this.labelLogin);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormAuthentification";
             this.Text = "FormAuthentification";
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

@@ -16,6 +16,7 @@ namespace Mediateq_AP_SIO2.metier
         public string Titre { get; set; }
         public string Image { get; set; }
         public Categorie LaCategorie { get; set; }
+
     }
 
 

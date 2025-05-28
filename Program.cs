@@ -17,15 +17,17 @@ namespace Mediateq_AP_SIO2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Affichage du formulaire d'authentification
+            
             FormAuthentification formAuth = new FormAuthentification();
+            
             if (formAuth.ShowDialog() == DialogResult.OK)  // Si l'authentification réussit
             {
                 // L'utilisateur est authentifié, afficher le formulaire principal
                 Application.Run(new FrmMediateq());
             }
-            else
+           else
             {
-                // L'authentification a échoué, fermer l'application
+                //L'authentification a échoué, fermer l'application
                 Application.Exit();
             }
 

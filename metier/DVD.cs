@@ -9,20 +9,19 @@ namespace Mediateq_AP_SIO2.metier
     internal class DVD : Document
     {
 
-        private string synopsis;
-        private string realisateur;
-        private int duree;
+        public string Synopsis { get; set; }
+        public string Realisateur { get; set; }
+        public int Duree { get; set; }
 
 
         public DVD(int unId, string unTitre, string pRealisateur, string pSynopsis,  int pDuree ,  string uneImage) : base(unId,unTitre,uneImage)
         {
-            synopsis = pSynopsis;
-            realisateur = pRealisateur;
-            duree = pDuree;
+            Synopsis = pSynopsis;
+            Realisateur = pRealisateur;
+            Duree = pDuree;
         }
 
-        public string Synopsis { get; set; }
-        public string Realisateur { get; set; }
-        public int Duree { get; set; }
+       
+
     }
 }

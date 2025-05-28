@@ -1,7 +1,7 @@
-﻿using System;
-using System.Data.SqlClient;
-using Mediateq_AP_SIO2.metier;
+﻿using Mediateq_AP_SIO2.metier;
 using MySql.Data.MySqlClient;
+using System;
+using System.Data.SqlClient;
 
 namespace Mediateq_AP_SIO2
 {
@@ -11,13 +11,13 @@ namespace Mediateq_AP_SIO2
 
         public static void creerConnection()
         {
-            string serverIp = "127.0.0.1";
+            string serverIp = "localhost";
             string username = "mediateq-web";
             string password = "mediateq-web";
             string databaseName = "mediateq";
 
             string dbConnectionString = string.Format("server={0};uid={1};pwd={2};database={3};", serverIp, username, password, databaseName);
-           
+
             try
             {
                 connexion = new MySqlConnection(dbConnectionString);
@@ -26,7 +26,7 @@ namespace Mediateq_AP_SIO2
             {
                 Console.WriteLine("Erreur connexion BDD", e.Message);
             }
-            
+
         }
 
         public static void connecter()
@@ -46,7 +46,7 @@ namespace Mediateq_AP_SIO2
             connexion.Close();
         }
 
- 
+
         // Exécution d'une requête de lecture ; retourne un Datareader
         public static MySqlDataReader execSQLRead(string requete)
         {
@@ -79,14 +79,14 @@ namespace Mediateq_AP_SIO2
 
         //Pour la page authentification
 
-        private static string connectionString = "Votre_Chaine_De_Connexion";
-
-        public static SqlConnection GetConnection()
+        public static MySqlConnection GetConnection()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            string connectionString = "server=127.0.0.1;uid=mediateq-web;pwd=mediateq-web;database=mediateq;";
+            MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
             return connection;
         }
+
 
         public static void CloseConnection(SqlConnection connection)
         {
@@ -94,6 +94,11 @@ namespace Mediateq_AP_SIO2
             {
                 connection.Close();
             }
+        }
+
+        public static bool EstConnecte()
+        {
+            return connexion != null && connexion.State == System.Data.ConnectionState.Open;
         }
     }
 }

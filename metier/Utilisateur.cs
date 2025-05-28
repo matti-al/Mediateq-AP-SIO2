@@ -8,15 +8,15 @@ namespace Mediateq_AP_SIO2.metier
 {
     internal class Utilisateur
     {
-        public int Id;
-        public string Login;
-        public string MotDePasse;
-        public string Nom;
-        public string Prenom;
-        public string Service;
+        private int Id;
+        private string Login;
+        private string Nom;
+        private string MotDePasse;
+        private string Prenom;
+        private Service Service;
 
 
-        public Utilisateur(int id, string login, string motDePasse, string nom, string prenom, string service)
+        public Utilisateur(int id, string login, string motDePasse, string nom, string prenom, Service service)
         {
             Id = id;
             Login = login;
@@ -40,7 +40,7 @@ namespace Mediateq_AP_SIO2.metier
         {
             return Prenom;
         }
-        public string getService()
+        public Service getService()
         {
             return Service;
         }

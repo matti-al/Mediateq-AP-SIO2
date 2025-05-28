@@ -38,8 +38,7 @@ namespace Mediateq_AP_SIO2
                         reader[3].ToString(),                  // Periodicite
                         DateTime.Parse(reader[5].ToString()),  // DateFinAbonnement
                         int.Parse(reader[4].ToString()),       // DelaiMiseADispo
-                        descripteur,                           // Descripteur
-                        categorie                              // Categorie
+                        descripteur                           // Descripteur
                     );
 
                     lesRevues.Add(titre);
