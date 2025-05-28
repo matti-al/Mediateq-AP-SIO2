@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : sam. 04 nov. 2023 à 18:20
+-- Généré le : mer. 28 mai 2025 à 11:32
 -- Version du serveur : 5.7.33
 -- Version de PHP : 8.2.6
 
@@ -18,15 +18,79 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `mediateq`
+-- Base de données : `mediateq`
 --
-DROP DATABASE IF EXISTS mediateq;
-CREATE DATABASE IF NOT EXISTS mediateq DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-DROP USER IF EXISTS "mediateq-web"@"localhost";
-CREATE USER "mediateq-web"@"localhost" IDENTIFIED BY "medi@teq-w3b";
-GRANT SELECT ON mediateq.* TO "mediateq-web"@"localhost";
 
-USE mediateq;
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `abonne`
+--
+
+CREATE TABLE `abonne` (
+  `numabonne` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `mail` varchar(200) NOT NULL,
+  `motdepasse` text NOT NULL,
+  `Service` varchar(50) NOT NULL,
+  `adresse` varchar(200) NOT NULL,
+  `telephone` varchar(10) NOT NULL,
+  `type_abonnement_id` int(11) NOT NULL DEFAULT '3',
+  `actif` tinyint(1) NOT NULL DEFAULT '1',
+  `date_debut` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_fin` datetime DEFAULT NULL,
+  `date_naissance` date DEFAULT NULL,
+  `carte_perdue` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `abonne`
+--
+
+INSERT INTO `abonne` (`numabonne`, `nom`, `prenom`, `mail`, `motdepasse`, `Service`, `adresse`, `telephone`, `type_abonnement_id`, `actif`, `date_debut`, `date_fin`, `date_naissance`, `carte_perdue`) VALUES
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', 'Prêts', '123 Rue Exemple, Paris, France', '0102030405', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Administratif', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', 'Culture', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(4, 'ALHUSSAN', 'matti-tech', 'matti.al-hussan@clsi.fr', '$2y$10$icyQdbCJ/hstGuq7tui3kuSoblBZlOEsQGHU8vQpQsKTNrVClzIJe', 'Culture', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-11-30 00:00:00', '2025-11-30 00:00:00', '2000-02-05', 0),
+(6, 'Test', 'bob', 'tomlebg@gmail.com', '$2y$10$B5Pv69v5oNDdrfJRnBpAcunPGrt6auQn0Iq6XewI98Q/0uD5Cjs4.', 'Administratif', '789 Boulevard Imaginaire, Lyon, France', '0602843644', 3, 1, '2024-11-30 00:00:00', '2025-11-30 00:00:00', '2004-12-05', 0),
+(12, 'ALHUSSAN', 'knv', 'matti.al-hussan4@clsi.fr', '$2y$10$f/6I5mIgKKxT6vONR9KBGuvsGxrtdFXJc8YALnsBpBfCSmRBLwU9u', 'Administratif', '789 Boulevard Imaginaire, Lyon, France', '0602843644', 2, 1, '2024-12-01 00:00:00', '2025-12-01 00:00:00', '2005-01-05', 0),
+(13, 'ALHUSSAN', 'knv', 'matti.al-hussa4n4@clsi.fr', '$2y$10$eZgVYYu9AdH5kMQkF0JSN.ZPv3mtqsK/1rKDYXnAkRq7yM2j0XfKG', 'Administratif', '789 Boulevard Imaginaire, Lyon, France', '0602843644', 2, 1, '2024-12-01 00:00:00', '2024-12-22 00:00:00', '2000-01-05', 0),
+(15, 'ALHUSSAN', 'matti-tech', 'matti.al-huss14an@clsi.fr', '$2y$10$rCOmMBW/vywga5BcyygY7O7/VbSFVts/BuWy8.dbbR5Snv7zUjRBO', 'Administratif', '789 Boulevard Imaginaire, Lyon, France', '0602843644', 1, 1, '2024-12-01 00:00:00', '2024-12-22 00:00:00', '2019-12-12', 0),
+(16, 'ALHUSSAN', 'knv', 'matti.al-hu4ssa4n4@clsi.fr', '$2y$10$9VKgnwdSwzroB7dRg0dbLOz/BD2PPw2GoJ/aJekUtjwsIe75p73wW', 'Administratif', '789 Boulevard Imaginaire, Lyon, France', '0602843644', 4, 1, '2024-12-01 00:00:00', '2025-01-12 00:00:00', '1965-01-05', 0),
+(17, 'ALHUSSAN', 'matti-tech', 'matti.al-h6ussan@clsi.fr', '$2y$10$bmHACEcbp9MNRrdjOy1t2.nslt9dt0H8Cf4qWv0PEC6SuNz3ZvSTu', 'Prêts', '789 Boulevard Imaginaire, Lyon, France', '071234511', 2, 1, '2024-12-02 00:00:00', '2024-12-23 00:00:00', '2005-02-01', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0),
+(1, 'PONCET', 'Tom', 'membre1@mediateq.com', '$2y$12$IVeTUvlETMsChSempeiZleT/0jnr3nE.HQmKzZa2GO291WODvAawK', '', '123 Rue Exemple, Paris, France', '0102030409', 4, 1, '2024-01-01 10:00:00', NULL, '2004-06-14', 1),
+(2, 'YAO LECOYER', 'Manu', 'membre2@mediateq.com', '$2y$12$l41G41L92FvrNlK42hAznOOc3CsXPnjmYsHdcn3DahwSjlQ3ocoMS', '', '456 Avenue Test, Lyon, France', '0607080910', 2, 0, '2024-02-01 11:00:00', '2024-03-01 11:00:00', '2005-08-18', 0),
+(3, 'AL-HUSSAN', 'Matti', 'membre3@mediateq.com', '$2y$12$HtZcsbu4PkP0BR/vwooSJu47XVqzQfHQtS.XdxmPwZRZBhaxRWq1y', '', '789 Boulevard Imaginaire, Lyon, France', '071234511', 1, 1, '2024-03-01 12:00:00', NULL, '2005-01-05', 1),
+(103, 'PONCET', 'Tom', 'membre4@gmail.com', '$2y$10$BZSU9VFjGitLk8ECUSJAD.GmCMimL081Qhxmna3pclgOAoQ0WR8Fa', '', '126 Rue Exemple, Paris, France', '102030405', 2, 1, '2024-12-10 00:00:00', '2024-12-31 00:00:00', '2000-05-14', 0);
 
 -- --------------------------------------------------------
 
@@ -81,6 +145,28 @@ INSERT INTO `descripteur` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `deterioration`
+--
+
+CREATE TABLE `deterioration` (
+  `idDocument` int(11) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `nomUsager` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dateDeterioration` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `deterioration`
+--
+
+INSERT INTO `deterioration` (`idDocument`, `numero`, `nomUsager`, `dateDeterioration`) VALUES
+(1, 2, 'Bob', '2024-12-13 10:43:48'),
+(1, 2, 'jorge', '2024-12-13 10:45:21'),
+(2, 1, 'Fred', '2024-12-13 11:52:14');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `document`
 --
 
@@ -125,6 +211,7 @@ INSERT INTO `document` (`id`, `titre`, `image`, `commandeEnCours`, `idPublic`) V
 (26, 'Agence tout risques', 'https://fr.web.img5.acsta.net/medias/nmedia/18/73/05/71/19447495.jpg', NULL, 3),
 (27, 'jumanji', 'https://www.bing.com/ck/a?!&&p=b6b76ecfa6ee25d62acc153640c52a34ddb74cbf58c4c8052d51c67785ccf939JmltdHM9MTcyODk1MDQwMA&ptn=3&ver=2&hsh=4&fclid=031832c4-3983-6f2c-2f06-265c3d836d48&u=a1L2ltYWdlcy9zZWFyY2g_Rk9STT1JQVJSU00mcT1qdW1hbmppKyUzYStiaWVudmVudWUrZGFucytsYStqdW5nbGU&ntb=1', NULL, 3),
 (28, 'CREED', 'https://www.bing.com/ck/a?!&&p=e1c7bed8a962af120873452f38d9406a9d66a5964f34dc4c48f5a0dcfd44651cJmltdHM9MTcyODk1MDQwMA&ptn=3&ver=2&hsh=4&fclid=031832c4-3983-6f2c-2f06-265c3d836d48&u=a1L2ltYWdlcy9zZWFyY2g_Rk9STT1JQVJSU00mcT1jcmVlZCslM2ErbCUyN2glYzMlYTlyaXRhZ2UrZGUrcm9ja3krYmFsYm9h&ntb=1', NULL, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -138,10 +225,60 @@ CREATE TABLE `dvd` (
   `duree` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `dvd`(`idDocument`,`synopsis`,`réalisateur`,`duree`) VALUES
-(27,"Jumanji : Bienvenue dans la jungle (Jumanji: Welcome to the Jungle)","Jake Kasdan",119),
-(28,"Adonis Johnson, fils du champion Apollo Creed, demande à Rocky Balboa de l'entraîner","Ryan Coogler",133);
+--
+-- Déchargement des données de la table `dvd`
+--
 
+INSERT INTO `dvd` (`idDocument`, `synopsis`, `réalisateur`, `duree`) VALUES
+(27, 'Jumanji : Bienvenue dans la jungle (Jumanji: Welcome to the Jungle)', 'Jake Kasdan', 119),
+(28, 'Adonis Johnson, fils du champion Apollo Creed, demande à Rocky Balboa de l\'entraîner', 'Ryan Coogler', 133);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `emprunt`
+--
+
+CREATE TABLE `emprunt` (
+  `idAbonne` int(11) NOT NULL,
+  `idDocument` int(11) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `dateDebut` datetime NOT NULL,
+  `dateFin` datetime NOT NULL,
+  `rendu` tinyint(1) DEFAULT '0',
+  `prolongeable` tinyint(1) DEFAULT '1',
+  `prolonger` tinyint(1) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `emprunt`
+--
+
+INSERT INTO `emprunt` (`idAbonne`, `idDocument`, `numero`, `dateDebut`, `dateFin`, `rendu`, `prolongeable`, `prolonger`) VALUES
+(1, 1, 1, '2024-12-01 10:00:00', '2025-01-08 00:00:00', 0, 1, 1),
+(1, 3, 2, '2024-11-28 14:00:00', '2024-01-08 00:00:00', 0, 0, 0),
+(1, 20, 1, '2024-12-01 10:00:00', '2024-12-16 00:00:00', 0, 0, 0),
+(2, 2, 1, '2024-11-25 09:30:00', '2024-12-05 09:30:00', 1, 0, 1),
+(2, 8, 1, '2024-11-25 09:30:00', '2024-12-12 00:00:00', 0, 0, 0),
+(2, 25, 1, '2024-12-01 10:00:00', '2024-12-22 00:00:00', 0, 0, 0),
+(3, 6, 1, '2024-11-28 14:00:00', '2024-12-26 00:00:00', 0, 0, 0),
+(3, 22, 1, '2024-11-28 14:00:00', '2024-12-12 14:00:00', 0, 0, 1),
+(3, 24, 1, '2024-11-25 09:30:00', '2024-12-05 09:30:00', 1, 1, 1);
+
+--
+-- Déclencheurs `emprunt`
+--
+DELIMITER $$
+CREATE TRIGGER `reset_prolongeable_prolonger` BEFORE UPDATE ON `emprunt` FOR EACH ROW BEGIN
+    -- Vérification si la dateFin a été modifiée
+    IF NEW.dateFin != OLD.dateFin THEN
+        -- Si la dateFin a changé, mettre prolongeable et prolonger à 0
+        SET NEW.prolongeable = 0;
+        SET NEW.prolonger = 0;
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -205,12 +342,12 @@ CREATE TABLE `exemplaire` (
 
 INSERT INTO `exemplaire` (`idDocument`, `numero`, `dateAchat`, `idRayon`, `idEtat`) VALUES
 (1, 1, '2023-01-15', 1, 1),
-(1, 2, '2023-02-20', 2, 2),
-(1, 3, '2023-03-10', 3, 3),
-(2, 1, '2023-07-02', 1, 1),
-(3, 1, '2023-04-05', 2, 1),
+(1, 2, '2023-02-20', 2, 3),
+(1, 3, '2023-03-10', 3, 1),
+(2, 1, '2023-07-02', 1, 3),
+(3, 1, '2023-04-05', 2, 2),
 (3, 2, '2023-05-12', 3, 2),
-(3, 3, '2023-06-08', 1, 3),
+(3, 3, '2023-06-08', 1, 2),
 (3, 4, '2023-11-10', 2, 2),
 (4, 1, '2023-07-15', 2, 2),
 (6, 1, '2023-07-20', 3, 3),
@@ -381,6 +518,204 @@ INSERT INTO `rayon` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `idAbonne` int(11) NOT NULL,
+  `idDocument` int(11) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `dateReservation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `idStatut` int(11) NOT NULL,
+  `rang` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`idAbonne`, `idDocument`, `numero`, `dateReservation`, `idStatut`, `rang`) VALUES
+(1, 1, 3, '2024-12-05 00:00:00', 1, 1),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 2),
+(1, 2, 3, '2024-12-05 00:00:00', 1, 1),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 2),
+(1, 7, 2, '2024-12-06 00:00:00', 1, 1),
+(1, 12, 4, '2024-12-07 00:00:00', 1, 1),
+(1, 16, 1, '2024-11-28 00:00:00', 1, 1),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 2),
+(2, 1, 1, '2024-12-06 00:00:00', 1, 1),
+(2, 1, 2, '2024-12-06 00:00:00', 1, 1),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 2),
+(2, 1, 4, '2024-12-06 00:00:00', 1, 1),
+(2, 2, 4, '2024-12-05 00:00:00', 1, 1),
+(2, 100, 4, '2024-12-06 00:00:00', 1, 1),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 1),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 1),
+(3, 100, 3, '2024-12-06 00:00:00', 1, 1),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 2),
+(3, 300, 4, '2024-12-05 00:00:00', 1, 1),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 3),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 3),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 2),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 3),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 2),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 2),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 2),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 3),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 2),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 2),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 4),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 4),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 4),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 3),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 2),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 2),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 2),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 4),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 4),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 5),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 5),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 3),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 5),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 3),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 3),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 3),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 5),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 3),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 3),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 6),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 6),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 6),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 5),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 3),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 3),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 3),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 6),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 6),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 7),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 7),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 4),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 7),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 4),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 4),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 4),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 7),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 4),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 4),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 8),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 8),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 8),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 7),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 4),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 4),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 4),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 8),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 8),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 9),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 9),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 5),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 9),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 5),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 5),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 5),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 9),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 5),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 5),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 10),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 10),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 10),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 9),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 5),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 5),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 5),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 10),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 10),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 11),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 11),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 6),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 11),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 6),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 6),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 6),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 11),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 6),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 6),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 12),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 12),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 12),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 11),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 6),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 6),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 6),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 12),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 12),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 13),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 13),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 7),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 13),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 7),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 7),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 7),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 13),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 7),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 7),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 14),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 14),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 14),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 13),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 7),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 7),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 7),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 14),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 14),
+(1, 1, 3, '2024-12-05 00:00:00', 2, 15),
+(1, 1, 4, '2024-12-07 00:00:00', 2, 15),
+(1, 2, 3, '2024-12-05 00:00:00', 2, 8),
+(1, 2, 4, '2024-12-06 00:00:00', 2, 15),
+(1, 7, 2, '2024-12-06 00:00:00', 2, 8),
+(1, 12, 4, '2024-12-07 00:00:00', 2, 8),
+(1, 16, 1, '2024-11-28 00:00:00', 2, 8),
+(1, 300, 4, '2024-12-05 00:00:00', 2, 15),
+(2, 1, 1, '2024-12-06 00:00:00', 2, 8),
+(2, 1, 2, '2024-12-06 00:00:00', 2, 8),
+(2, 1, 3, '2024-11-28 00:00:00', 2, 16),
+(2, 1, 4, '2024-12-06 00:00:00', 2, 16),
+(2, 2, 4, '2024-12-05 00:00:00', 2, 16),
+(2, 100, 4, '2024-12-06 00:00:00', 2, 15),
+(3, 20, 1, '2024-11-25 00:00:00', 2, 8),
+(3, 24, 1, '2024-11-28 00:00:00', 2, 8),
+(3, 100, 3, '2024-12-06 00:00:00', 2, 8),
+(3, 100, 4, '2024-12-06 00:00:00', 2, 16),
+(3, 300, 4, '2024-12-05 00:00:00', 2, 16);
+
+--
+-- Déclencheurs `reservation`
+--
+DELIMITER $$
+CREATE TRIGGER `Trig_BI_reservation_rang_statut` BEFORE INSERT ON `reservation` FOR EACH ROW BEGIN
+    DECLARE nb_reservation INT DEFAULT 0;
+
+    -- Vérifier le rang maximum existant pour ce document et exemplaire
+    SELECT COUNT(*) INTO nb_reservation
+    FROM reservation
+    WHERE idDocument = NEW.idDocument AND numero = NEW.numero;
+
+    -- Calculer le rang pour la nouvelle réservation
+    SET NEW.rang = nb_reservation + 1;
+
+    -- Définir le statut selon le rang
+    IF NEW.rang = 1 THEN
+        SET NEW.idStatut = 1; -- Disponible
+    ELSE
+        SET NEW.idStatut = 2; -- Indisponible
+    END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `revue`
 --
 
@@ -399,17 +734,133 @@ CREATE TABLE `revue` (
 --
 
 INSERT INTO `revue` (`id`, `titre`, `empruntable`, `periodicite`, `delai_miseadispo`, `dateFinAbonnement`, `idDescripteur`) VALUES
-(10001, 'Arts Magazine', 'O', 'MS', 52, '2022-03-31', 2),
+(10001, 'Arts Magazine', 'O', 'MS', 52, '2027-03-30', 2),
 (10002, 'Alternatives Economiques', 'O', 'HB', 52, '2022-04-30', 1),
 (10003, 'Challenges', 'O', 'HB', 26, '2022-02-28', 1),
 (10004, 'Rock and Folk', 'O', 'MS', 52, '2022-10-31', 2),
-(10005, 'Les Echos', 'N', 'QT', 5, '2022-12-31', 1),
+(10005, 'Les Echos', 'N', 'QT', 5, '2049-03-31', 1),
 (10006, 'L\'Equipe', 'N', 'QT', 5, '2022-01-31', 3),
-(10007, 'Telerama', 'O', 'HB', 26, '2022-01-31', 2),
+(10007, 'Telerama', 'O', 'HB', 26, '2042-01-31', 2),
 (10008, 'L\'Obs', 'O', 'HB', 26, '2022-01-31', 5),
 (10009, 'Le Monde', 'N', 'QT', 5, '2022-01-31', 5),
-(10010, 'L\'Equipe Magazine', 'O', 'HB', 12, '2022-01-31', 3),
-(10011, 'Geo', 'O', 'MS', 52, '2022-01-31', 2);
+(10010, 'L\'Equipe Magazine', 'O', 'HB', 12, '2036-11-30', 3),
+(10011, 'Geo', 'O', 'MS', 52, '2035-04-30', 2),
+(10012, 'Voltaire', 'O', 'MS', 6, '2025-05-08', 10008),
+(10013, 'Voltaire', 'O', 'MS', 6, '2023-05-09', 10008);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `libelle` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `service`
+--
+
+INSERT INTO `service` (`id`, `libelle`) VALUES
+(1, 'Administratif'),
+(2, 'Prêts'),
+(3, 'Culture');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `statut`
+--
+
+CREATE TABLE `statut` (
+  `id` int(11) NOT NULL,
+  `libelle` enum('bientôt disponible','disponible') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `statut`
+--
+
+INSERT INTO `statut` (`id`, `libelle`) VALUES
+(1, 'disponible'),
+(2, 'bientôt disponible');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type_abonnement`
+--
+
+CREATE TABLE `type_abonnement` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nb_documents` int(11) NOT NULL,
+  `duree_pret_weeks` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `type_abonnement`
+--
+
+INSERT INTO `type_abonnement` (`id`, `nom`, `nb_documents`, `duree_pret_weeks`) VALUES
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6),
+(1, 'Junior', 20, 3),
+(2, 'Jeune', 20, 3),
+(3, 'Adulte', 20, 3),
+(4, 'Educateur', 30, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateurs`
+--
+
+CREATE TABLE `utilisateurs` (
+  `Id` int(11) NOT NULL,
+  `Login` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `MotDePasse` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Service` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`Id`, `Login`, `MotDePasse`, `Nom`, `Prenom`, `Service`) VALUES
+(1, 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Al-hussan', 'Matti', '1'),
+(2, 'Prêts.log', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Al-hussan', 'Matti', '2'),
+(3, 'Culture.log', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Al-hussan', 'Matti', '3');
 
 --
 -- Index pour les tables déchargées
@@ -429,6 +880,12 @@ ALTER TABLE `descripteur`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `deterioration`
+--
+ALTER TABLE `deterioration`
+  ADD PRIMARY KEY (`idDocument`,`numero`,`dateDeterioration`);
+
+--
 -- Index pour la table `document`
 --
 ALTER TABLE `document`
@@ -440,6 +897,12 @@ ALTER TABLE `document`
 --
 ALTER TABLE `dvd`
   ADD PRIMARY KEY (`idDocument`);
+
+--
+-- Index pour la table `emprunt`
+--
+ALTER TABLE `emprunt`
+  ADD UNIQUE KEY `idAbonne` (`idAbonne`,`idDocument`,`numero`);
 
 --
 -- Index pour la table `est_decrit_par_2`
@@ -495,6 +958,29 @@ ALTER TABLE `revue`
   ADD KEY `id_1` (`idDescripteur`);
 
 --
+-- Index pour la table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Login` (`Login`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -503,6 +989,12 @@ ALTER TABLE `revue`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idDocument`) REFERENCES `document` (`id`);
+
+--
+-- Contraintes pour la table `deterioration`
+--
+ALTER TABLE `deterioration`
+  ADD CONSTRAINT `deterioration_ibfk_1` FOREIGN KEY (`idDocument`,`numero`) REFERENCES `exemplaire` (`idDocument`, `numero`);
 
 --
 -- Contraintes pour la table `document`
