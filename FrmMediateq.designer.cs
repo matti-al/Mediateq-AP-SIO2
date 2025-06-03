@@ -137,7 +137,7 @@ namespace Mediateq_AP_SIO2
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageRevuesEtJournaux = new System.Windows.Forms.TabPage();
             this.comboBoxIdRevue = new System.Windows.Forms.ComboBox();
             this.ValiderRevue = new System.Windows.Forms.Button();
             this.textBoxNbMois = new System.Windows.Forms.TextBox();
@@ -147,7 +147,8 @@ namespace Mediateq_AP_SIO2
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageLesNouveauxAbonnements = new System.Windows.Forms.TabPage();
+            this.comboBoxEmpruntableNvAbo = new System.Windows.Forms.ComboBox();
             this.buttonEnregistrerNvAbo = new System.Windows.Forms.Button();
             this.comboBoxDescipteurNvAbo = new System.Windows.Forms.ComboBox();
             this.dateTimePickerFinAbo = new System.Windows.Forms.DateTimePicker();
@@ -162,7 +163,6 @@ namespace Mediateq_AP_SIO2
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxEmpruntableNvAbo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher2)).BeginInit();
             this.tabDVD.SuspendLayout();
@@ -183,9 +183,9 @@ namespace Mediateq_AP_SIO2
             this.tabPageAfficherDocumentsInutilisables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocumentDeteriorer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAfficheDocumentInutilisable)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.tabPageRevuesEtJournaux.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAfficheRevue)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabPageLesNouveauxAbonnements.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNvAbo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -752,7 +752,7 @@ namespace Mediateq_AP_SIO2
             this.tabTitres.Controls.Add(this.cbxDomaines);
             this.tabTitres.Location = new System.Drawing.Point(4, 22);
             this.tabTitres.Name = "tabTitres";
-            this.tabTitres.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabTitres.Padding = new System.Windows.Forms.Padding(3);
             this.tabTitres.Size = new System.Drawing.Size(905, 556);
             this.tabTitres.TabIndex = 1;
             this.tabTitres.Text = "Titres";
@@ -848,7 +848,7 @@ namespace Mediateq_AP_SIO2
             this.tabParutions.Controls.Add(this.cbxTitres);
             this.tabParutions.Location = new System.Drawing.Point(4, 22);
             this.tabParutions.Name = "tabParutions";
-            this.tabParutions.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabParutions.Padding = new System.Windows.Forms.Padding(3);
             this.tabParutions.Size = new System.Drawing.Size(905, 556);
             this.tabParutions.TabIndex = 0;
             this.tabParutions.Text = "Parutions";
@@ -946,8 +946,8 @@ namespace Mediateq_AP_SIO2
             this.tabOngletsApplication.Controls.Add(this.tabPageCangerEtat);
             this.tabOngletsApplication.Controls.Add(this.tabPageDeterioration);
             this.tabOngletsApplication.Controls.Add(this.tabPageAfficherDocumentsInutilisables);
-            this.tabOngletsApplication.Controls.Add(this.tabPage1);
-            this.tabOngletsApplication.Controls.Add(this.tabPage2);
+            this.tabOngletsApplication.Controls.Add(this.tabPageRevuesEtJournaux);
+            this.tabOngletsApplication.Controls.Add(this.tabPageLesNouveauxAbonnements);
             this.tabOngletsApplication.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabOngletsApplication.Location = new System.Drawing.Point(0, 0);
             this.tabOngletsApplication.Name = "tabOngletsApplication";
@@ -966,9 +966,9 @@ namespace Mediateq_AP_SIO2
             this.tabPageCangerEtat.Controls.Add(this.textBoxReferenceEtat);
             this.tabPageCangerEtat.Controls.Add(this.label16);
             this.tabPageCangerEtat.Location = new System.Drawing.Point(4, 22);
-            this.tabPageCangerEtat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageCangerEtat.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageCangerEtat.Name = "tabPageCangerEtat";
-            this.tabPageCangerEtat.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageCangerEtat.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageCangerEtat.Size = new System.Drawing.Size(905, 556);
             this.tabPageCangerEtat.TabIndex = 4;
             this.tabPageCangerEtat.Text = "Changer L\'Etat";
@@ -1055,9 +1055,9 @@ namespace Mediateq_AP_SIO2
             this.tabPageDeterioration.Controls.Add(this.textBoxNumeroDocumentDeteriorer);
             this.tabPageDeterioration.Controls.Add(this.textBoxIdDocumentDeterioration);
             this.tabPageDeterioration.Location = new System.Drawing.Point(4, 22);
-            this.tabPageDeterioration.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDeterioration.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageDeterioration.Name = "tabPageDeterioration";
-            this.tabPageDeterioration.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageDeterioration.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageDeterioration.Size = new System.Drawing.Size(905, 556);
             this.tabPageDeterioration.TabIndex = 5;
             this.tabPageDeterioration.Text = "La Détérioration";
@@ -1137,9 +1137,9 @@ namespace Mediateq_AP_SIO2
             this.tabPageAfficherDocumentsInutilisables.Controls.Add(this.dataGridViewDocumentDeteriorer);
             this.tabPageAfficherDocumentsInutilisables.Controls.Add(this.dataGridViewAfficheDocumentInutilisable);
             this.tabPageAfficherDocumentsInutilisables.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAfficherDocumentsInutilisables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAfficherDocumentsInutilisables.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageAfficherDocumentsInutilisables.Name = "tabPageAfficherDocumentsInutilisables";
-            this.tabPageAfficherDocumentsInutilisables.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAfficherDocumentsInutilisables.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageAfficherDocumentsInutilisables.Size = new System.Drawing.Size(905, 556);
             this.tabPageAfficherDocumentsInutilisables.TabIndex = 6;
             this.tabPageAfficherDocumentsInutilisables.Text = "Affichage document inutilisables et détériorés";
@@ -1239,28 +1239,28 @@ namespace Mediateq_AP_SIO2
             this.Column5.Name = "Column5";
             this.Column5.Width = 125;
             // 
-            // tabPage1
+            // tabPageRevuesEtJournaux
             // 
-            this.tabPage1.Controls.Add(this.comboBoxIdRevue);
-            this.tabPage1.Controls.Add(this.ValiderRevue);
-            this.tabPage1.Controls.Add(this.textBoxNbMois);
-            this.tabPage1.Controls.Add(this.label33);
-            this.tabPage1.Controls.Add(this.label32);
-            this.tabPage1.Controls.Add(this.dataGridViewAfficheRevue);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage1.Size = new System.Drawing.Size(905, 556);
-            this.tabPage1.TabIndex = 7;
-            this.tabPage1.Text = "Revues & Journaux";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageRevuesEtJournaux.Controls.Add(this.comboBoxIdRevue);
+            this.tabPageRevuesEtJournaux.Controls.Add(this.ValiderRevue);
+            this.tabPageRevuesEtJournaux.Controls.Add(this.textBoxNbMois);
+            this.tabPageRevuesEtJournaux.Controls.Add(this.label33);
+            this.tabPageRevuesEtJournaux.Controls.Add(this.label32);
+            this.tabPageRevuesEtJournaux.Controls.Add(this.dataGridViewAfficheRevue);
+            this.tabPageRevuesEtJournaux.Location = new System.Drawing.Point(4, 22);
+            this.tabPageRevuesEtJournaux.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPageRevuesEtJournaux.Name = "tabPageRevuesEtJournaux";
+            this.tabPageRevuesEtJournaux.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPageRevuesEtJournaux.Size = new System.Drawing.Size(905, 556);
+            this.tabPageRevuesEtJournaux.TabIndex = 7;
+            this.tabPageRevuesEtJournaux.Text = "Revues & Journaux";
+            this.tabPageRevuesEtJournaux.UseVisualStyleBackColor = true;
             // 
             // comboBoxIdRevue
             // 
             this.comboBoxIdRevue.FormattingEnabled = true;
             this.comboBoxIdRevue.Location = new System.Drawing.Point(118, 323);
-            this.comboBoxIdRevue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxIdRevue.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxIdRevue.Name = "comboBoxIdRevue";
             this.comboBoxIdRevue.Size = new System.Drawing.Size(143, 21);
             this.comboBoxIdRevue.TabIndex = 6;
@@ -1268,7 +1268,7 @@ namespace Mediateq_AP_SIO2
             // ValiderRevue
             // 
             this.ValiderRevue.Location = new System.Drawing.Point(298, 412);
-            this.ValiderRevue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ValiderRevue.Margin = new System.Windows.Forms.Padding(2);
             this.ValiderRevue.Name = "ValiderRevue";
             this.ValiderRevue.Size = new System.Drawing.Size(152, 55);
             this.ValiderRevue.TabIndex = 5;
@@ -1279,7 +1279,7 @@ namespace Mediateq_AP_SIO2
             // textBoxNbMois
             // 
             this.textBoxNbMois.Location = new System.Drawing.Point(565, 325);
-            this.textBoxNbMois.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNbMois.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNbMois.Name = "textBoxNbMois";
             this.textBoxNbMois.Size = new System.Drawing.Size(140, 20);
             this.textBoxNbMois.TabIndex = 4;
@@ -1338,28 +1338,40 @@ namespace Mediateq_AP_SIO2
             this.Column11.Name = "Column11";
             this.Column11.Width = 125;
             // 
-            // tabPage2
+            // tabPageLesNouveauxAbonnements
             // 
-            this.tabPage2.Controls.Add(this.comboBoxEmpruntableNvAbo);
-            this.tabPage2.Controls.Add(this.buttonEnregistrerNvAbo);
-            this.tabPage2.Controls.Add(this.comboBoxDescipteurNvAbo);
-            this.tabPage2.Controls.Add(this.dateTimePickerFinAbo);
-            this.tabPage2.Controls.Add(this.textBoxDelaiNvAbo);
-            this.tabPage2.Controls.Add(this.comboBoxPeriodiciteNvAbo);
-            this.tabPage2.Controls.Add(this.textBoxTitreNvAbo);
-            this.tabPage2.Controls.Add(this.dataGridViewNvAbo);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(905, 556);
-            this.tabPage2.TabIndex = 8;
-            this.tabPage2.Text = "Les nouveaux abonnements ";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.comboBoxEmpruntableNvAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.buttonEnregistrerNvAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.comboBoxDescipteurNvAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.dateTimePickerFinAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.textBoxDelaiNvAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.comboBoxPeriodiciteNvAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.textBoxTitreNvAbo);
+            this.tabPageLesNouveauxAbonnements.Controls.Add(this.dataGridViewNvAbo);
+            this.tabPageLesNouveauxAbonnements.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLesNouveauxAbonnements.Name = "tabPageLesNouveauxAbonnements";
+            this.tabPageLesNouveauxAbonnements.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLesNouveauxAbonnements.Size = new System.Drawing.Size(905, 556);
+            this.tabPageLesNouveauxAbonnements.TabIndex = 8;
+            this.tabPageLesNouveauxAbonnements.Text = "Les nouveaux abonnements ";
+            this.tabPageLesNouveauxAbonnements.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxEmpruntableNvAbo
+            // 
+            this.comboBoxEmpruntableNvAbo.FormattingEnabled = true;
+            this.comboBoxEmpruntableNvAbo.Items.AddRange(new object[] {
+            "O",
+            "N"});
+            this.comboBoxEmpruntableNvAbo.Location = new System.Drawing.Point(213, 295);
+            this.comboBoxEmpruntableNvAbo.Name = "comboBoxEmpruntableNvAbo";
+            this.comboBoxEmpruntableNvAbo.Size = new System.Drawing.Size(104, 21);
+            this.comboBoxEmpruntableNvAbo.TabIndex = 9;
+            this.comboBoxEmpruntableNvAbo.Text = "Empruntable";
             // 
             // buttonEnregistrerNvAbo
             // 
             this.buttonEnregistrerNvAbo.Location = new System.Drawing.Point(111, 414);
-            this.buttonEnregistrerNvAbo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEnregistrerNvAbo.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEnregistrerNvAbo.Name = "buttonEnregistrerNvAbo";
             this.buttonEnregistrerNvAbo.Size = new System.Drawing.Size(165, 57);
             this.buttonEnregistrerNvAbo.TabIndex = 8;
@@ -1476,18 +1488,6 @@ namespace Mediateq_AP_SIO2
             this.Column18.Name = "Column18";
             this.Column18.Width = 125;
             // 
-            // comboBoxEmpruntableNvAbo
-            // 
-            this.comboBoxEmpruntableNvAbo.FormattingEnabled = true;
-            this.comboBoxEmpruntableNvAbo.Items.AddRange(new object[] {
-            "O",
-            "N"});
-            this.comboBoxEmpruntableNvAbo.Location = new System.Drawing.Point(213, 295);
-            this.comboBoxEmpruntableNvAbo.Name = "comboBoxEmpruntableNvAbo";
-            this.comboBoxEmpruntableNvAbo.Size = new System.Drawing.Size(104, 21);
-            this.comboBoxEmpruntableNvAbo.TabIndex = 9;
-            this.comboBoxEmpruntableNvAbo.Text = "Empruntable";
-            // 
             // FrmMediateq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1526,11 +1526,11 @@ namespace Mediateq_AP_SIO2
             this.tabPageAfficherDocumentsInutilisables.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDocumentDeteriorer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAfficheDocumentInutilisable)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabPageRevuesEtJournaux.ResumeLayout(false);
+            this.tabPageRevuesEtJournaux.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAfficheRevue)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPageLesNouveauxAbonnements.ResumeLayout(false);
+            this.tabPageLesNouveauxAbonnements.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNvAbo)).EndInit();
             this.ResumeLayout(false);
 
@@ -1644,7 +1644,7 @@ namespace Mediateq_AP_SIO2
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPageRevuesEtJournaux;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.DataGridView dataGridViewAfficheRevue;
         private System.Windows.Forms.Label label32;
@@ -1655,7 +1655,7 @@ namespace Mediateq_AP_SIO2
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.Button ValiderRevue;
         private System.Windows.Forms.ComboBox comboBoxIdRevue;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageLesNouveauxAbonnements;
         private System.Windows.Forms.DataGridView dataGridViewNvAbo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;

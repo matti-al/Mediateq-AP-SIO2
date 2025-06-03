@@ -49,6 +49,8 @@ namespace Mediateq_AP_SIO2
                         tabStates["tabPageCangerEtat"] = true;
                         tabStates["tabPageDeterioration"] = true;
                         tabStates["tabPageAfficherDocumentsInutilisables"] = true;
+                        tabStates["tabPageRevuesEtJournaux"] = true;
+                        tabStates["tabOngletsApplication"] = true;
 
                         break;
 
@@ -57,9 +59,12 @@ namespace Mediateq_AP_SIO2
                         tabStates["tabTitres"] = true;
                         tabStates["tabLivres"] = true;
                         tabStates["tabDVD"] = true;
-                        tabStates["tabPageCangerEtat"] = false;
-                        tabStates["tabPageDeterioration"] = false;
-                        tabStates["tabPageAfficherDocumentsInutilisables"] = false;
+                        tabStates["tabPageCangerEtat"] = true;
+                        tabStates["tabPageDeterioration"] = true;
+                        tabStates["tabPageAfficherDocumentsInutilisables"] = true;
+                        tabStates["tabPageRevuesEtJournaux"] = false;
+                        tabStates["tabOngletsApplication"] = true;
+
                         break;
 
                     case "Culture":
@@ -70,6 +75,9 @@ namespace Mediateq_AP_SIO2
                         tabStates["tabPageCangerEtat"] = false;
                         tabStates["tabPageDeterioration"] = false;
                         tabStates["tabPageAfficherDocumentsInutilisables"] = false;
+                        tabStates["tabPageRevuesEtJournaux"] = false;
+                        tabStates["tabOngletsApplication"] = true;
+
                         break;
 
                     
