@@ -11,23 +11,54 @@ using System.Linq;
 
 namespace Mediateq_AP_SIO2
 {
+    /// <summary>
+    /// Formulaire principal de l'application Mediateq.
+    /// Gère l'affichage et l'interaction avec les différentes fonctionnalités du système 
+    /// comme la gestion des parutions, titres, livres, DVD, et la maintenance des documents.
+    /// </summary>
     public partial class FrmMediateq : Form
     {
         #region Variables globales
 
+        /// <summary>
+        /// Liste des catégories disponibles dans le système
+        /// </summary>
         static List<Categorie> lesCategories;
-        static List<Descripteur> lesDescripteurs;
-        static List<Revue> lesRevues;
-        static List<Livre> lesLivres;
-        static List<DVD> lesDvD;
 
+        /// <summary>
+        /// Liste des descripteurs disponibles dans le système
+        /// </summary>
+        static List<Descripteur> lesDescripteurs;
+
+        /// <summary>
+        /// Liste des revues disponibles dans le système
+        /// </summary>
+        static List<Revue> lesRevues;
+
+        /// <summary>
+        /// Liste des livres disponibles dans le système
+        /// </summary>
+        static List<Livre> lesLivres;
+
+        /// <summary>
+        /// Liste des DVD disponibles dans le système
+        /// </summary>
+        static List<DVD> lesDvD;
 
         #endregion
 
 
         #region Procédures évènementielles
+
+        /// <summary>
+        /// Dictionnaire stockant l'état d'activation des onglets en fonction du service de l'utilisateur
+        /// </summary>
         public static Dictionary<string, bool> TabStates { get; set; }
 
+        /// <summary>
+        /// Initialise une nouvelle instance du formulaire principal Mediateq.
+        /// Configure les onglets en fonction des autorisations de l'utilisateur.
+        /// </summary>
         public FrmMediateq()
         {
             InitializeComponent();
@@ -37,6 +68,12 @@ namespace Mediateq_AP_SIO2
             }
         }
 
+        /// <summary>
+        /// Gère l'événement de chargement du formulaire.
+        /// Initialise la connexion à la base de données et charge les données nécessaires.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void FrmMediateq_Load(object sender, EventArgs e)
         {
             try
@@ -81,11 +118,11 @@ namespace Mediateq_AP_SIO2
                 List<Descripteur> descripteurs = DAODocuments.getAllDescripteurs();
                 comboBoxDescipteurNvAbo.Items.Clear();
 
-                 foreach (Descripteur descripteur in descripteurs)
-                 {
+                foreach (Descripteur descripteur in descripteurs)
+                {
                     comboBoxDescipteurNvAbo.Items.Add(descripteur.Libelle); // Ajouter les objets "Descripteur"
-                 }           
-                
+                }
+
                 // Affiche Periodicite
                 List<Revue> periodicites = DAORevue.GetPeriodicite();
                 comboBoxPeriodiciteNvAbo.Items.Clear();
@@ -109,6 +146,13 @@ namespace Mediateq_AP_SIO2
         //-----------------------------------------------------------
         // ONGLET "PARUTIONS"
         //------------------------------------------------------------
+
+        /// <summary>
+        /// Gère l'événement d'entrée dans l'onglet Parutions.
+        /// Charge la liste des revues et initialise la liste déroulante des titres.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void tabParutions_Enter(object sender, EventArgs e)
         {
             // Chargement des objets en mémoire
@@ -119,6 +163,12 @@ namespace Mediateq_AP_SIO2
             cbxTitres.DisplayMember = "titre";
         }
 
+        /// <summary>
+        /// Gère l'événement de changement de sélection dans la liste déroulante des titres.
+        /// Affiche les parutions associées au titre sélectionné.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void cbxTitres_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<Parution> lesParutions;
@@ -143,12 +193,25 @@ namespace Mediateq_AP_SIO2
         //-----------------------------------------------------------
         // ONGLET "TITRES"
         //------------------------------------------------------------
+
+        /// <summary>
+        /// Gère l'événement d'entrée dans l'onglet Titres.
+        /// Initialise la liste déroulante des domaines avec les descripteurs disponibles.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void tabTitres_Enter(object sender, EventArgs e)
         {
             cbxDomaines.DataSource = lesDescripteurs;
             cbxDomaines.DisplayMember = "libelle";
         }
 
+        /// <summary>
+        /// Gère l'événement de changement de sélection dans la liste déroulante des domaines.
+        /// Affiche les revues du domaine sélectionné.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void cbxDomaines_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Objet Domaine sélectionné dans la comboBox
@@ -174,6 +237,12 @@ namespace Mediateq_AP_SIO2
         // ONGLET "LIVRES"
         //-----------------------------------------------------------
 
+        /// <summary>
+        /// Gère l'événement d'entrée dans l'onglet Livres.
+        /// Charge la liste des livres et associe chaque livre à sa catégorie.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void tabLivres_Enter(object sender, EventArgs e)
         {
             // Chargement des objets en mémoire
@@ -189,6 +258,12 @@ namespace Mediateq_AP_SIO2
             }
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton Rechercher.
+        /// Recherche et affiche les détails d'un livre à partir de son numéro de document.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void btnRechercher_Click(object sender, EventArgs e)
         {
             // On réinitialise les labels
@@ -221,6 +296,12 @@ namespace Mediateq_AP_SIO2
                 MessageBox.Show("Document non trouvé dans les livres");
         }
 
+        /// <summary>
+        /// Gère l'événement de modification du texte dans le champ de recherche par titre.
+        /// Filtre et affiche les livres dont le titre contient le texte saisi.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void txbTitre_TextChanged(object sender, EventArgs e)
         {
             dgvLivres.Rows.Clear();
@@ -251,9 +332,10 @@ namespace Mediateq_AP_SIO2
         // ONGLET "DVD"
         //-----------------------------------------------------------
 
-
-
-
+        /// <summary>
+        /// Configure les onglets de l'application en fonction des autorisations de l'utilisateur.
+        /// </summary>
+        /// <param name="tabStates">Dictionnaire des états d'activation pour chaque onglet</param>
         public void ConfigureTabs(Dictionary<string, bool> tabStates)
         {
             foreach (var tabState in tabStates)
@@ -265,8 +347,12 @@ namespace Mediateq_AP_SIO2
             }
         }
 
-
-
+        /// <summary>
+        /// Gère l'événement de clic sur l'onglet DVD.
+        /// Charge la liste des DVD et associe chaque DVD à sa catégorie.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void tabDVD_Click(object sender, EventArgs e)
         {
             // Chargement des objets en mémoire
@@ -282,7 +368,12 @@ namespace Mediateq_AP_SIO2
             }
         }
 
-
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton de recherche de DVD.
+        /// Recherche et affiche les détails d'un DVD à partir de son numéro de document.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void btnDvD_Click(object sender, EventArgs e)
         {
             // On réinitialise les labels
@@ -313,6 +404,13 @@ namespace Mediateq_AP_SIO2
                 MessageBox.Show("Document non trouvé dans les livres");
 
         }
+
+        /// <summary>
+        /// Gère l'événement de modification du texte dans le champ de recherche de DVD par titre.
+        /// Filtre et affiche les DVD dont le titre contient le texte saisi.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void txbDvD_TextChanged(object sender, EventArgs e)
         {
             dgvDvD.Rows.Clear();
@@ -341,24 +439,30 @@ namespace Mediateq_AP_SIO2
 
         #region Changement d'état d'un document
 
-
-        //Pour afficher les Etats dans la liste deroulante
+        /// <summary>
+        /// Gère l'événement de changement de sélection dans la liste déroulante des états.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void comboBoxSelectionnerEtat_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (comboBoxSelectionnerEtat.SelectedItem != null)
             {
                 Etat etatSelectionne = (Etat)comboBoxSelectionnerEtat.SelectedItem;
             }
-
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton de modification d'état.
+        /// Met à jour l'état d'un exemplaire dans la base de données.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void buttonModifierEtat_Click(object sender, EventArgs e)
         {
             int idDocument = Convert.ToInt32(textBoxReferenceEtat.Text);
             int numero = Convert.ToInt32(textBoxNumeroDocumentTabChangerEtat.Text);
             Etat etatSelectionne = (Etat)comboBoxSelectionnerEtat.SelectedItem;
-
 
             DAOEtat.UpdateEtat(idDocument, numero, etatSelectionne.Id);
             MessageChangerEtat.Text = "L'état du document a été mis à jour avec succès.";
@@ -367,6 +471,13 @@ namespace Mediateq_AP_SIO2
         #endregion
 
         #region Deterioration
+
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton d'enregistrement de détérioration.
+        /// Met à jour l'état d'un exemplaire et enregistre les informations de détérioration.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void buttonEnregistrerDeterioration_Click(object sender, EventArgs e)
         {
             int etatDeterioreId = 3;
@@ -395,7 +506,9 @@ namespace Mediateq_AP_SIO2
 
         #region Affichage des documents
 
-
+        /// <summary>
+        /// Charge et affiche la liste des exemplaires inutilisables (état id = 4) dans le DataGridView correspondant.
+        /// </summary>
         private void ChargerExemplairesInutilisables()
         {
             try
@@ -418,6 +531,9 @@ namespace Mediateq_AP_SIO2
             }
         }
 
+        /// <summary>
+        /// Charge et affiche la liste des documents détériorés dans le DataGridView correspondant.
+        /// </summary>
         private void ChargerDocumentsDeteriores()
         {
             try
@@ -445,7 +561,9 @@ namespace Mediateq_AP_SIO2
 
         #region Les abonnements aux revues et journaux 
 
-        // Pour afficher les abonnements aux revues et journaux
+        /// <summary>
+        /// Charge et affiche la liste des revues dont l'abonnement arrive à échéance dans moins de 60 jours.
+        /// </summary>
         private void ChargerRevue()
         {
             try
@@ -461,13 +579,16 @@ namespace Mediateq_AP_SIO2
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Erreur lors du chargement des Revues ");
-
             }
         }
 
-        // Pour ajouter le nombre de mois à ajouter
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton de validation de renouvellement d'abonnement.
+        /// Met à jour la date de fin d'abonnement d'une revue dans la base de données.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void ValiderRevue_Click(object sender, EventArgs e)
         {
             try
@@ -481,7 +602,7 @@ namespace Mediateq_AP_SIO2
 
 
                 // Mettre à jour l'état de la revue dans la base de données
-                DAORevue.UpdateEtatRevue(idRevue,nbMois);
+                DAORevue.UpdateEtatRevue(idRevue, nbMois);
 
 
                 // Recharger les revues
@@ -492,7 +613,6 @@ namespace Mediateq_AP_SIO2
             {
                 MessageBox.Show("Erreur lors de la mise à jour de l'abonnement : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
 
@@ -500,6 +620,9 @@ namespace Mediateq_AP_SIO2
 
         #region Les nouveaux abonnements 
 
+        /// <summary>
+        /// Charge et affiche la liste complète des revues disponibles dans le système.
+        /// </summary>
         public void ChargerTTRevue()
         {
             try
@@ -534,7 +657,6 @@ namespace Mediateq_AP_SIO2
                         libelle
                     );
                 }
-
             }
             catch (Exception ex)
             {
@@ -542,13 +664,18 @@ namespace Mediateq_AP_SIO2
             }
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton d'enregistrement d'un nouvel abonnement.
+        /// Crée une nouvelle revue et l'enregistre dans la base de données.
+        /// </summary>
+        /// <param name="sender">L'objet qui a déclenché l'événement</param>
+        /// <param name="e">Les données de l'événement</param>
         private void buttonEnregistrerNvAbo_Click(object sender, EventArgs e)
-        
         {
             try
             {
                 // Récupérer les informations de la nouvelle revue  
-                
+
                 int id = DAORevue.GetNextRevueId();
                 string titre = textBoxTitreNvAbo.Text.Trim();
                 char empruntable = comboBoxEmpruntableNvAbo.SelectedItem.ToString()[0];
@@ -573,10 +700,6 @@ namespace Mediateq_AP_SIO2
                 MessageBox.Show("Erreur lors de l'enregistrement de l'abonnement : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         #endregion
-
-        
     }
 }

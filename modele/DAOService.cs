@@ -8,8 +8,18 @@ using System.Threading.Tasks;
 
 namespace Mediateq_AP_SIO2.modele
 {
+    /// <summary>
+    /// Classe d'accès aux données des services.
+    /// Fournit des méthodes pour récupérer les services depuis la base de données.
+    /// </summary>
     internal class DAOService
     {
+        /// <summary>
+        /// Récupère un service depuis la base de données à partir de son identifiant.
+        /// </summary>
+        /// <param name="id">L'identifiant unique du service à récupérer</param>
+        /// <returns>L'objet Service correspondant ou null si aucun service n'est trouvé</returns>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de la récupération</exception>
         public static Service GetServiceById(int id)
         {
             try

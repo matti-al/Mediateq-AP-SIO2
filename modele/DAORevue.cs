@@ -9,10 +9,16 @@ using System.Windows.Forms;
 
 namespace Mediateq_AP_SIO2.modele
 {
+    /// <summary>
+    /// Classe d'accès aux données concernant les revues.
+    /// </summary>
     class DAORevue
     {
-
-        // Récupération des revues dont la date de fin d'abonnement est inférieure à 60 jours
+        /// <summary>
+        /// Récupère la liste des revues dont la date de fin d'abonnement est inférieure à 60 jours.
+        /// </summary>
+        /// <returns>Liste des revues dont l'abonnement arrive à échéance dans moins de 60 jours</returns>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de la récupération des données</exception>
         public static List<Revue> GetIdRevueEcheance60j()
         {
             List<Revue> revues = new List<Revue>();
@@ -30,7 +36,7 @@ namespace Mediateq_AP_SIO2.modele
                     DateTime dateFinAbonnement = DateTime.Parse(reader["dateFinAbonnement"].ToString());
 
                     // On crée un objet Revue avec l'id et le titre
-                    Revue uneRevue = new Revue(id, titre, dateFinAbonnement); 
+                    Revue uneRevue = new Revue(id, titre, dateFinAbonnement);
                     revues.Add(uneRevue);
                 }
 
@@ -44,8 +50,12 @@ namespace Mediateq_AP_SIO2.modele
             return revues;
         }
 
-
-        // Mise à jour de l'état de la revue
+        /// <summary>
+        /// Met à jour la date de fin d'abonnement d'une revue en ajoutant un nombre spécifique de mois.
+        /// </summary>
+        /// <param name="idRevue">L'identifiant de la revue à mettre à jour</param>
+        /// <param name="nbMois">Le nombre de mois à ajouter à la date de fin d'abonnement</param>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de la mise à jour</exception>
         public static void UpdateEtatRevue(int idRevue, int nbMois)
         {
             try
@@ -63,10 +73,14 @@ namespace Mediateq_AP_SIO2.modele
             }
         }
 
-        // Correction in the GetPeriodicite method
+        /// <summary>
+        /// Récupère la liste des différentes périodicités disponibles pour les revues.
+        /// </summary>
+        /// <returns>Liste des périodicités distinctes de revues</returns>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de la récupération des données</exception>
         public static List<Revue> GetPeriodicite()
         {
-            List<Revue> periodicites = new List<Revue>(); // Change the type of the list to string
+            List<Revue> periodicites = new List<Revue>();
             try
             {
                 string req = "SELECT DISTINCT periodicite FROM revue";
@@ -76,7 +90,7 @@ namespace Mediateq_AP_SIO2.modele
                 {
                     string uneperiodicite = reader["periodicite"].ToString();
                     Revue periodicite = new Revue(uneperiodicite);
-                    periodicites.Add(periodicite); // This now matches the type of the list
+                    periodicites.Add(periodicite);
                 }
                 DAOFactory.deconnecter();
             }
@@ -87,13 +101,17 @@ namespace Mediateq_AP_SIO2.modele
             return periodicites;
         }
 
-        // Insertion des nouvelles donnees 
+        /// <summary>
+        /// Insère une nouvelle revue dans la base de données.
+        /// </summary>
+        /// <param name="uneRevue">L'objet Revue contenant les données à insérer</param>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de l'insertion</exception>
         public static void InsertRevue(Revue uneRevue)
         {
             try
             {
                 string req = $"INSERT INTO revue (id, titre, empruntable, periodicite, delai_miseadispo, dateFinAbonnement, idDescripteur) VALUES ('{uneRevue.Id}', '{uneRevue.Titre}', '{uneRevue.Empruntable}', '{uneRevue.Periodicite}', '{uneRevue.DelaiMiseADispo}', '{uneRevue.DateFinAbonnement:yyyy-MM-dd}', '{uneRevue.IdDescripteur.Id}')";
-               
+
                 if (!DAOFactory.EstConnecte()) // Vérifie si la connexion n'est pas déjà établie
                 {
                     DAOFactory.connecter(); // Se connecte si ce n'est pas le cas
@@ -107,6 +125,11 @@ namespace Mediateq_AP_SIO2.modele
             }
         }
 
+        /// <summary>
+        /// Détermine le prochain identifiant disponible pour une nouvelle revue.
+        /// </summary>
+        /// <returns>Le prochain identifiant disponible (généralement le plus grand identifiant existant + 1)</returns>
+        /// <exception cref="Exception">Exception affichée en cas d'erreur lors de la récupération des données</exception>
         public static int GetNextRevueId()
         {
             try
@@ -126,6 +149,5 @@ namespace Mediateq_AP_SIO2.modele
                 return 1; // Retourne 1 par défaut en cas d'erreur  
             }
         }
-
     }
 }

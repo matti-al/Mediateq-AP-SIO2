@@ -6,11 +6,21 @@ using System.Collections.Generic;
 
 namespace Mediateq_AP_SIO2.modele
 {
+    /// <summary>
+    /// Classe d'accès aux données concernant les exemplaires de documents.
+    /// </summary>
     internal class DAOExemplaire
     {
-
+        /// <summary>
+        /// Classe interne fournissant des méthodes d'accès aux données pour les exemplaires.
+        /// </summary>
         public class ExemplaireDAO
         {
+            /// <summary>
+            /// Récupère la liste des exemplaires qui sont dans un état inutilisable (état id = 4).
+            /// </summary>
+            /// <returns>Une ArrayList contenant les exemplaires inutilisables, chaque exemplaire étant représenté par un tableau d'objets</returns>
+            /// <exception cref="Exception">Exception levée en cas d'erreur lors de la récupération des données</exception>
             public static ArrayList GetExemplairesInutilisables()
             {
                 ArrayList exemplaires = new ArrayList();
@@ -30,9 +40,9 @@ namespace Mediateq_AP_SIO2.modele
                         // Stocker chaque exemplaire comme un tableau d'objets
                         var exemplaire = new object[]
                         {
-                            int.Parse(reader["idDocument"].ToString()),
-                            int.Parse(reader["numero"].ToString()),
-                            reader["libelle"].ToString()
+                                int.Parse(reader["idDocument"].ToString()),
+                                int.Parse(reader["numero"].ToString()),
+                                reader["libelle"].ToString()
                         };
 
                         exemplaires.Add(exemplaire);
@@ -47,8 +57,6 @@ namespace Mediateq_AP_SIO2.modele
 
                 return exemplaires;
             }
-
-
         }
     }
 }

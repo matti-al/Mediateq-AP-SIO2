@@ -5,10 +5,16 @@ using System.Collections.Generic;
 
 namespace Mediateq_AP_SIO2.modele
 {
+    /// <summary>
+    /// Classe d'accès aux données concernant les états des exemplaires.
+    /// </summary>
     internal class DAOEtat
     {
-
-        // Récupère la liste des états
+        /// <summary>
+        /// Récupère la liste de tous les états disponibles dans la base de données.
+        /// </summary>
+        /// <returns>Liste des états disponibles</returns>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de la récupération des données</exception>
         public static List<Etat> GetEtats()
         {
             List<Etat> etats = new List<Etat>();
@@ -38,7 +44,13 @@ namespace Mediateq_AP_SIO2.modele
             return etats;
         }
 
-        // Met à jour l'état d'un exemplaire
+        /// <summary>
+        /// Met à jour l'état d'un exemplaire spécifique dans la base de données.
+        /// </summary>
+        /// <param name="idDocument">L'identifiant du document</param>
+        /// <param name="numero">Le numéro de l'exemplaire</param>
+        /// <param name="idEtat">L'identifiant du nouvel état à assigner</param>
+        /// <exception cref="Exception">Exception levée en cas d'erreur lors de la mise à jour</exception>
         public static void UpdateEtat(int idDocument, int numero, int idEtat)
         {
             try
@@ -55,8 +67,6 @@ namespace Mediateq_AP_SIO2.modele
                 throw new Exception("Erreur lors de la mise à jour de l'état : " + ex.Message);
             }
         }
-
-
     }
 
 }
